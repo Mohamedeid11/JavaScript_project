@@ -1,8 +1,10 @@
 const form = document.querySelector('#register-form');
+const usernameInput = document.querySelector('#username');
 const nameInput = document.querySelector('#name');
 const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
 const confirmPasswordInput = document.querySelector('#confirm-password');
+const usernameError = document.querySelector('#username-error');
 const nameError = document.querySelector('#name-error');
 const emailError = document.querySelector('#email-error');
 const passwordError = document.querySelector('#password-error');
@@ -13,6 +15,13 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();
+
+  if (!usernameInput.checkValidity()) {
+    usernameError.textContent = 'Please enter a valid username.';
+    return;
+  } else {
+    usernameError.textContent = '';
+  }
 
   if (!nameInput.checkValidity()) {
     nameError.textContent = 'Please enter a valid name.';
@@ -50,20 +59,32 @@ form.addEventListener('submit', function(event) {
   }
 
  
+    const username = usernameInput.value;
     const name = nameInput.value;
     const email = emailInput.value;
     const password =  passwordInput.value;
 
-    users.push({ name, email ,password});
+   // Get existing user data from local storage
+   var users = JSON.parse(localStorage.getItem("users")) || {};
 
-  localStorage.setItem('users', JSON.stringify(users));
-
-  
-
+   // Check if username already exists
+   if (users[username]) {
+     alert("email already exists, please choose a different one.");
+   } else {
+     // Add new user to the list
+     users[username] = { password: password, name: name , email: email};
+     // Save updated user list in local storage
+     localStorage.setItem("users", JSON.stringify(users));
+     // Registration successful, redirect to login page
+    //  window.location.href = "login.html";
+    
   swal({  
     title: "Registration successful!",  
     icon: "success",  
   });  
+   }
+  
+
 
   form.reset();
 
