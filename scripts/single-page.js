@@ -61,7 +61,7 @@ let singleBook = document.querySelector("#single-page");
 
                     </div>
                     <div class="card-footer bg-success text-white">
-                        <button class="btn btn-success add-to-plan" id="${book.id}" onClick="singleBook(this.id)" >  Add To Cart </button>
+                        <button class="btn btn-success add-to-plan" id="${book.id}" onClick="storeCart(this.id)" >  Add To Cart </button>
                     </div>                  
 
                 </div>
@@ -77,3 +77,48 @@ let singleBook = document.querySelector("#single-page");
       })
 
   });
+
+function storeCart(id){
+
+    let single_book_data = "";
+    fetch("https://www.googleapis.com/books/v1/volumes?q=quilting/" + id )
+    .then((response) => response.json())
+    .then((book) => { 
+  
+        book.items.map(book => {
+
+            console.log(book.volumeInfo)
+            console.log(book.volumeInfo.authors)
+
+            // Get existing user data from local storage
+            var cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+            // Check if username already exists
+            if (cart[book.id]) {
+                alert("Book already Add to Cart, please choose a different Book.");
+            } else {
+                // Add new user to the list
+                cart[book.id] = { title: book.volumeInfo.title, category: book.volumeInfo.categories , price: 150};
+
+                // Save updated user list in local storage
+                localStorage.setItem("cart", JSON.stringify(cart));
+                
+                swal({  
+                    title: "Book Add To Cart Successfully",  
+                    icon: "success",  
+                }).then((result) => {
+
+                    window.location.href = "home.html";
+                    
+                })
+
+            }
+    
+        })
+  
+    });
+
+}
+
+
+    
