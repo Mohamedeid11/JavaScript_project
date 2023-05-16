@@ -60,15 +60,12 @@ let singleBook = document.querySelector("#single-page");
                     </table>
 
                 </div>
-                <div class="card-footer bg-primary text-white">
-                    <button class="btn add-to-plan" id="${book.id}" onClick="singleBook(this.id)" >  Add To Cart </button>
+                <div class="card-footer bg-success text-white">
+                    <button class="btn btn-success add-to-plan" id="${book.id}" onClick="singleBook(this.id)" >  Add To Cart </button>
                 </div>
 
                 </div>
             </div>
-        </div>
-        <div class="card-footer w-100 text-muted">
-            Footer stating cats are CUTE little animals
         </div>
     </div>
        
