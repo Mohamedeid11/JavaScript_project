@@ -22,13 +22,16 @@ function checkLoginStatus() {
       document.getElementById("login-btn").style.display = "block";
 
       // here to reload to login page if not logged in and visit any page except register and login
-      if(window.location.pathname != '/signin.html' && window.location.pathname != '/signup.html' && window.location.pathname != '/index.html'){
+      if(window.location.href.substring(window.location.href.lastIndexOf('/') + 1) != 'signin.html' 
+        && window.location.href.substring(window.location.href.lastIndexOf('/') + 1) != 'signup.html' 
+        && window.location.href.substring(window.location.href.lastIndexOf('/') + 1) != 'index.html'){
       
         window.location.href = "signin.html";
 
       }
 
-      // console.log(window.location.pathname)
+      console.log(window.location.href.substring(window.location.href.lastIndexOf('/') + 1))
+
       return false;
     }
 
