@@ -20,49 +20,49 @@ let singleBook = document.querySelector("#single-page");
                 <img src="${book.volumeInfo.imageLinks.thumbnail}" class="img-fluid" width="400px" height="700" alt="">
             </div>
             <div class="col">
-                <div class="card-block px-2">
-                <div class="card-header">
-                    <h5 class="card-title">${book.volumeInfo.title}</h5>
-                </div>
-                <div class="card-body">
+                    <div class="card-block px-2">
+                    <div class="card-header">
+                        <h5 class="card-title">${book.volumeInfo.title}</h5>
+                    </div>
+                    <div class="card-body">
 
-                    <table class="table table-striped">
-                
-                        <tr>
-                            <th scope="row"> Categories </th>
-                            <td>${book.volumeInfo.categories}</td>
-                        </tr>
+                        <table class="table table-striped">
+                    
+                            <tr>
+                                <th scope="row"> Categories </th>
+                                <td>${book.volumeInfo.categories}</td>
+                            </tr>
 
-                        <tr>
-                            <th scope="row">Authors </th>
-                            <td> ${book.volumeInfo.authors} </td>    
-                        </tr>
+                            <tr>
+                                <th scope="row">Authors </th>
+                                <td> ${book.volumeInfo.authors} </td>    
+                            </tr>
 
-                        <tr>
-                            <th scope="row"> Publisher</th>
-                            <td> ${book.volumeInfo.publisher}</td>
-                        </tr>
+                            <tr>
+                                <th scope="row"> Publisher</th>
+                                <td> ${book.volumeInfo.publisher}</td>
+                            </tr>
 
-                        <tr>
-                            <th scope="row"> Description </th>
-                            <td>${book.volumeInfo.description}</td>
-                        </tr>
+                            <tr>
+                                <th scope="row"> Description </th>
+                                <td>${book.volumeInfo.description}</td>
+                            </tr>
 
-                        <tr>
-                            <th scope="row"> Count Of Pages </th>
-                            <td>${book.volumeInfo.pageCount}</td>
-                        </tr>
-                        
-                        <tr>
-                            <th scope="row"> Price </th>
-                            <td>150$</td>
-                        </tr>
-                    </table>
+                            <tr>
+                                <th scope="row"> Number Of Pages </th>
+                                <td>${book.volumeInfo.pageCount}</td>
+                            </tr>
+                            
+                            <tr>
+                                <th scope="row"> Price </th>
+                                <td>150$</td>
+                            </tr>
+                        </table>
 
-                </div>
-                <div class="card-footer bg-success text-white">
-                    <button class="btn btn-success add-to-plan" id="${book.id}" onClick="singleBook(this.id)" >  Add To Cart </button>
-                </div>
+                    </div>
+                    <div class="card-footer bg-success text-white">
+                        <button class="btn btn-success add-to-plan" id="${book.id}" onClick="singleBook(this.id)" >  Add To Cart </button>
+                    </div>                  
 
                 </div>
             </div>
