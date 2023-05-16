@@ -58,3 +58,13 @@ body {
     width: 100%;
     height: auto;
   }
+
+  /* Here to limit lines of paragraph  3 lines*/
+  .limit-paragraph-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+            line-clamp: 3; 
+    -webkit-box-orient: vertical;
+ }
