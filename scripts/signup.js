@@ -69,7 +69,13 @@ form.addEventListener('submit', function(event) {
 
    // Check if username already exists
    if (users[username]) {
-     alert("email already exists, please choose a different one.");
+    
+      swal({  
+          title: "email already exists, please choose a different one.",  
+          icon: "error",
+          timer: 2000,  
+      });
+
     } else {
       // Add new user to the list
       users[username] = { password: password, name: name , email: email};

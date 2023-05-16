@@ -5,7 +5,9 @@ function login() {
     var users = JSON.parse(localStorage.getItem("users"));
     
     // Check if user exists and password matches
-    console.log(users[username].password);
+    
+    // console.log(users[username].password);
+
     if (users && users[username] && users[username].password === password) {
     // Login successful, save user info in session storage
       sessionStorage.setItem("username", username);

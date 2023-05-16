@@ -90,19 +90,28 @@ function storeCart(id){
             console.log(book.volumeInfo)
             console.log(book.volumeInfo.authors)
 
-            // Get existing user data from local storage
-            var cart = JSON.parse(localStorage.getItem("cart")) || {};
+            // Load the tasks from local storage if they exist
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Check if username already exists
+
+            // Check if cart.id already exists
             if (cart[book.id]) {
-                alert("Book already Add to Cart, please choose a different Book.");
-            } else {
-                // Add new user to the list
-                cart[book.id] = { title: book.volumeInfo.title, category: book.volumeInfo.categories , price: 150};
 
-                // Save updated user list in local storage
-                localStorage.setItem("cart", JSON.stringify(cart));
-                
+                swal({  
+                    title: "Book already Add to Cart, please choose a different Book.",  
+                    icon: "error",
+                    timer: 3000,  
+                });
+
+
+            } else {
+
+                // Add the task to the tasks array
+                cart.push({ id: id ,title: book.volumeInfo.title, category: book.volumeInfo.categories , price: 150});
+
+                // Save the tasks to local storage
+                localStorage.setItem('cart', JSON.stringify(cart));
+
                 swal({  
                     title: "Book Add To Cart Successfully",  
                     icon: "success",  
