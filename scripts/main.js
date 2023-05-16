@@ -12,6 +12,8 @@ function checkLoginStatus() {
       document.getElementById("logout-btn").style.display = "block";
       document.getElementById("home-page").style.display = "block";
       document.getElementById("courses-page").style.display = "block";
+      document.getElementById("cart-page").style.display = "block";
+      document.getElementById("contact-page").style.display = "block";
 
       return true;
 
