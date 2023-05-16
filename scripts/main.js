@@ -22,7 +22,7 @@ function checkLoginStatus() {
       document.getElementById("login-btn").style.display = "block";
 
       // here to reload to login page if not logged in and visit any page except register and login
-      if(window.location.pathname != '/signin.html' && window.location.pathname != '/signup.html'){
+      if(window.location.pathname != '/signin.html' && window.location.pathname != '/signup.html' && window.location.pathname != '/index.html'){
       
         window.location.href = "signin.html";
 

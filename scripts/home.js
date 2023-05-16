@@ -14,14 +14,18 @@
 
 
 let content = document.querySelector("#content");
+
 let out = "";
 fetch("https://www.googleapis.com/books/v1/volumes?q=quilting")
 .then((response) => response.json())
 .then((books) => {
   // console.log(books)
     return books.items.map(book => {
-      console.log(book.volumeInfo)
-      console.log(book.volumeInfo.imageLinks)
+      
+      // console.log(book.id)
+
+      // console.log(book.volumeInfo.imageLinks)
+      
       out += `
 
       <div class="card col-3">
@@ -33,7 +37,9 @@ fetch("https://www.googleapis.com/books/v1/volumes?q=quilting")
           <p class="card-text limit-paragraph-line">${book.volumeInfo.description}</p>
         </div>
         <div class="card-footer bg-secondary text-white">
-          <small class="text-muted "> <a href="https://www.googleapis.com/books/v1/volumes?q=quilting/hU8uuQEACAAJ" class="btn add-to-plan" data-course="Course 2">read More</a></small>
+          <small class="text-muted "> 
+            <button class="btn add-to-plan" id="${book.id}" onClick="singleBook(this.id)" > read More</button>
+          </small>
         </div>
       </div>
     
@@ -44,4 +50,11 @@ fetch("https://www.googleapis.com/books/v1/volumes?q=quilting")
     })
 });
 
+
+
+function singleBook(id){
+  
+    window.location.href = "single-page.html?" + id;
+
+}
 
