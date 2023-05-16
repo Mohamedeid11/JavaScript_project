@@ -70,23 +70,25 @@ form.addEventListener('submit', function(event) {
    // Check if username already exists
    if (users[username]) {
      alert("email already exists, please choose a different one.");
-   } else {
-     // Add new user to the list
-     users[username] = { password: password, name: name , email: email};
-     // Save updated user list in local storage
-     localStorage.setItem("users", JSON.stringify(users));
-     // Registration successful, redirect to login page
-    //  window.location.href = "login.html";
+    } else {
+      // Add new user to the list
+      users[username] = { password: password, name: name , email: email};
+
+      // Save updated user list in local storage
+      localStorage.setItem("users", JSON.stringify(users));
     
-  swal({  
-    title: "Registration successful!",  
-    icon: "success",  
-  });  
-   }
+      swal({  
+        title: "Registration successful!",  
+        icon: "success",  
+      }).then((result) => {
+
+        window.location.href = "signin.html";
+        
+      })
+
+    }
   
-
-
-  form.reset();
+    form.reset();
 
 });
 

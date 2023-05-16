@@ -11,3 +11,6 @@ courseCards.forEach(card => {
     card.style.backgroundColor = 'white';
   });
 });
+
+
+
