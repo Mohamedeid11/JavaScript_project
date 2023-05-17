@@ -11,7 +11,7 @@ function checkLoginStatus() {
       // user is logged in, show the logout button and hide the login button  
       document.getElementById("logout-btn").style.display = "block";
       document.getElementById("home-page").style.display = "block";
-      document.getElementById("courses-page").style.display = "block";
+      document.getElementById("books-page").style.display = "block";
       document.getElementById("cart-page").style.display = "block";
       document.getElementById("contact-page").style.display = "block";
 
