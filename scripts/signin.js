@@ -29,7 +29,7 @@ function login() {
             timer: 2000,  
         }).then((result) => {
 
-            window.location.href = "home.html";
+            window.location.href = "index.html";
             
           })
 
