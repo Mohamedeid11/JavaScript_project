@@ -1,6 +1,7 @@
 // Get the user's data from session storage
 const username = sessionStorage.getItem("username");
 const Name = sessionStorage.getItem("name");
+const Email = sessionStorage.getItem("email");
 
 // // Get the user's data from cookies
 // var username = getCookie("username");
@@ -14,6 +15,8 @@ function checkLoginStatus() {
       document.getElementById("books-page").style.display = "block";
       document.getElementById("cart-page").style.display = "block";
       document.getElementById("contact-page").style.display = "block";
+      document.getElementById("team-page").style.display = "block";
+      document.getElementById("drop-item").style.display = "block";
       document.getElementById("user-name").innerHTML = Name;
 
       return true;

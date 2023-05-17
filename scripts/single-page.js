@@ -80,7 +80,6 @@ let singleBook = document.querySelector("#single-page");
 
 function storeCart(id){
 
-    let single_book_data = "";
     fetch("https://www.googleapis.com/books/v1/volumes?q=quilting/" + id )
     .then((response) => response.json())
     .then((book) => { 
@@ -117,7 +116,7 @@ function storeCart(id){
                     icon: "success",  
                 }).then((result) => {
 
-                    window.location.href = "home.html";
+                    window.location.href = "all-books.html";
                     
                 })
 
