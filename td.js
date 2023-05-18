@@ -1,110 +1,182 @@
-let input = document.querySelector(".input");
-let submit = document.querySelector(".add");
-let tasksDiv = document.querySelector(".tasks");
+// SAVE THE NOTE
+// Create and save a new note when clicked the save button
+function newElement() {
+  let hideEmptyTxt;
+  let li = document.createElement("li");
+  let inputvalue = document.querySelector("#myInput").value;
+  let savedNote = document.createTextNode(inputvalue);
+  li.appendChild(savedNote);
+  if (inputvalue === ''){
+    document.querySelector("#emptytext").innerHTML= "Please write something";
+    document.querySelector("#emptytext").style.backgroundColor = "pink";
+    document.querySelector("#emptytext").style.border = "1px solid";
+    hideEmptyTxt = setTimeout(spanEmptytxt, 3000); // hide message in 3secs
+  } else {
+    document.querySelector("#myNotes").appendChild(li);
+  }
+  document.querySelector("#myInput").value = '';
 
-// Empty Array To Store The Tasks
-let arrayOfTasks = [];
+  // Span edit button for each note
+  let spanTwo = document.createElement("span");
+    textTwo = document.createTextNode("✓");
+    spanTwo.className = "edit";
+    spanTwo.appendChild(textTwo);
+    li.appendChild(spanTwo);
 
-// Check if Theres Tasks In Local Storage
-if (localStorage.getItem("tasks")) {
-  arrayOfTasks = JSON.parse(localStorage.getItem("tasks"));
+  // Spawn close button for each note
+  let span = document.createElement("span");
+  text = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(text);
+  li.appendChild(span);
+
+  // STORE SAVED NOTES IN LOCAL STORAGE
+  // Get the editable element
+  let editElement = document.querySelector("#saved-notes");
+  editElement = document.querySelector("#myNotes");
+  // Get the edited element content
+  let userVersion = editElement.innerHTML;
+  // Save the content to local storage
+  localStorage.userEdits = userVersion;
+
+  // Hide a saved note when clicked close button
+  for (i = 0; i < close.length; i++){
+    close[i].onclick = function() {
+      let div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+     for (i = 0; i < edit.length; i++){
+  edit[i].onclick = function() {
+  let div = this.parentElement;
+
+  // Make notes editable when clicked edit button
+  let hideMessage;
+  let noteEditable = document.querySelector("#myNotes").contentEditable;
+  if (noteEditable == 'inherit' || noteEditable == 'false') {
+    document.querySelector("#myNotes").contentEditable = true;
+    textTwo.nodeValue = '✓';
+  } else {
+    document.querySelector("#myNotes").contentEditable = false;
+    textTwo.nodeValue = ':';
+    // Write a confirmation to the user
+    document.querySelector("#update").innerHTML = "Changes saved";
+    document.querySelector("#update").style.backgroundColor = "lightgreen";
+    document.querySelector("#update").style.border = "1px solid";
+    hideMessage = setTimeout(hideIt, 3000); // hide message in 3secs
+    }
+    }
+  }
+}
+// Make "Changes saved" disappear after 3 seconds
+function hideIt() {
+  document.querySelector("#update").innerHTML = "";
+  document.querySelector("#update").style.backgroundColor = "transparent";
+  document.querySelector("#update").style.border = "none";
+}
+// Make "empty" disappear after 3 seconds
+function spanEmptytxt() {
+  document.querySelector("#emptytext").innerHTML = "";
+  document.querySelector("#emptytext").style.backgroundColor = "transparent";
+  document.querySelector("#emptytext").style.border = "none";
 }
 
-// Trigger Get Data From Local Storage Function
-getDataFromLocalStorage();
-
-// Add Task
-submit.onclick = function () {
-  if (input.value !== "") {
-    addTaskToArray(input.value); // Add Task To Array Of Tasks
-    input.value = ""; // Empty Input Field
-  }
+// DELETE THE NOTE
+// Clear inputs on the text area
+function clearElement() {
+  document.querySelector("#myInput").value = '';
 };
 
-// Click On Task Element
-tasksDiv.addEventListener("click", (e) => {
-  // Delete Button
-  if (e.target.classList.contains("del")) {
-    // Remove Task From Local Storage
-    deleteTaskWith(e.target.parentElement.getAttribute("data-id"));
-    // Remove Element From Page
-    e.target.parentElement.remove();
+// Create close button and append it to each note
+let nodeList = document.getElementsByTagName("li");
+let i;
+for (i = 0; i < nodeList.length; i++){
+  span = document.createElement("span");
+  text = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(text);
+  nodeList[i].appendChild(span);
+}
+
+// Click the close button to hide saved notes
+let close = document.getElementsByClassName("close");
+    i;
+for (i = 0; i < close.length; i++){
+  close[i].onclick = function() {
+  let div = this.parentElement;
+  div.style.display = "none";
+   }
+}
+
+// EDIT THE NOTE
+// Click the edit button to edit notes
+let edit = document.getElementsByClassName("edit");
+i;
+let hideMessage;
+for (i = 0; i < edit.length; i++){
+  edit[i].onclick = function() {
+  let div = this.parentElement;
+  let noteEditable = document.querySelector("#myNotes").contentEditable;
+  if (noteEditable == 'inherit' || noteEditable == 'false') {
+    document.querySelector("#myNotes").contentEditable = true;
+    textTwo.nodeValue = '✓';
+  } else {
+    document.querySelector("#myNotes").contentEditable = false;
+    textTwo.nodeValue = ':';
+    // Write a confirmation to the user
+    document.querySelector("#update").innerHTML = "Changes saved";
+    document.querySelector("#update").style.backgroundColor = "lightgreen";
+    document.querySelector("#update").style.border = "1px solid";
+    hideMessage = setTimeout(hideIt, 3000); // hide message in 3secs
   }
-  // Task Element
-  if (e.target.classList.contains("task")) {
-    // Toggle Completed For The Task
-    toggleStatusTaskWith(e.target.getAttribute("data-id"));
-    // Toggle Done Class
-    e.target.classList.toggle("done");
-  }
-});
-
-function addTaskToArray(taskText) {
-  // Task Data
-  const task = {
-    id: Date.now(),
-    title: taskText,
-    completed: false,
-  };
-  // Push Task To Array Of Tasks
-  arrayOfTasks.push(task);
-  // Add Tasks To Page
-  addElementsToPageFrom(arrayOfTasks);
-  // Add Tasks To Local Storage
-  addDataToLocalStorageFrom(arrayOfTasks);
-}
-
-function addElementsToPageFrom(arrayOfTasks) {
-  // Empty Tasks Div
-  tasksDiv.innerHTML = "";
-  // Looping On Array Of Tasks
-  arrayOfTasks.forEach((task) => {
-    // Create Main Div
-    let div = document.createElement("div");
-    div.className = "task";
-    // Check If Task is Done
-    if (task.completed) {
-      div.className = "task done";
-    }
-    div.setAttribute("data-id", task.id);
-    div.appendChild(document.createTextNode(task.title));
-    // Create Delete Button
-    let span = document.createElement("span");
-    span.className = "del";
-    span.appendChild(document.createTextNode("Delete"));
-    // Append Button To Main Div
-    div.appendChild(span);
-    // Add Task Div To Tasks Container
-    tasksDiv.appendChild(div);
-  });
-}
-
-function addDataToLocalStorageFrom(arrayOfTasks) {
-  window.localStorage.setItem("tasks", JSON.stringify(arrayOfTasks));
-}
-
-function getDataFromLocalStorage() {
-  let data = window.localStorage.getItem("tasks");
-  if (data) {
-    let tasks = JSON.parse(data);
-    addElementsToPageFrom(tasks);
   }
 }
 
-function deleteTaskWith(taskId) {
-  // For Explain Only
-  // for (let i = 0; i < arrayOfTasks.length; i++) {
-  //   console.log(`${arrayOfTasks[i].id} === ${taskId}`);
-  // }
-  arrayOfTasks = arrayOfTasks.filter((task) => task.id != taskId);
-  addDataToLocalStorageFrom(arrayOfTasks);
+// Create edit button and append it to each note
+nodeList = document.getElementsByTagName("li");
+i;
+for (i = 0; i < nodeList.length; i++){
+  spanTwo = createElement("span");
+  textTwo = document.createTextNode("✓");
+  spanTwo.className = "edit";
+  spanTwo.appendChild(text);
+  nodeList[i].appendChild(span);
 }
 
-function toggleStatusTaskWith(taskId) {
-  for (let i = 0; i < arrayOfTasks.length; i++) {
-    if (arrayOfTasks[i].id == taskId) {
-      arrayOfTasks[i].completed == false ? (arrayOfTasks[i].completed = true) : (arrayOfTasks[i].completed = false);
+// Check if user has previously saved edits
+function checkEdits() {
+  let textTwo = document.createTextNode("✓");
+  if(localStorage.userEdits != null)
+    document.querySelector("#saved-notes").innerHTML = localStorage.userEdits;
+  
+  // Hide a saved note when clicked close button
+  for (i = 0; i < close.length; i++){
+    close[i].onclick = function() {
+      let div = this.parentElement;
+      div.style.display = "none";
     }
   }
-  addDataToLocalStorageFrom(arrayOfTasks);
+    for (i = 0; i < edit.length; i++){
+  edit[i].onclick = function() {
+  let div = this.parentElement;
+  
+  // Make notes editable when clicked edit button
+  let hideMessage;
+  let noteEditable = document.querySelector("#myNotes, #saved-notes").contentEditable;
+  if (noteEditable == 'inherit' || noteEditable == 'false') {
+    document.querySelector("#myNotes").contentEditable = true;
+    document.querySelector("#saved-notes").contentEditable = true;
+    textTwo.nodeValue = '✓';
+  } else {
+    document.querySelector("#myNotes").contentEditable = false;
+    document.querySelector("#saved-notes").contentEditable = false;
+    textTwo.nodeValue = ':';
+    // Write a confirmation to the user
+    document.querySelector("#update").innerHTML = "Changes saved";
+    document.querySelector("#update").style.backgroundColor = "lightgreen";
+    document.querySelector("#update").style.border = "1px solid";
+    hideMessage = setTimeout(hideIt, 3000); // hide message in 3secs
+    }
+    }
+  }
 }
