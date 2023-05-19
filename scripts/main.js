@@ -52,5 +52,5 @@ document.getElementById("logout-btn").addEventListener("click", function() {
   sessionStorage.removeItem("username");
   sessionStorage.removeItem("name");
   sessionStorage.removeItem("email");
-  window.location.href = "signin.html";  // checkLoginStatus();
+  window.location.href = "index.html";  // checkLoginStatus();
 });
