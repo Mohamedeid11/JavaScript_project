@@ -1,0 +1,87 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header Styles */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  header h1 {
+    font-size: 36px;
+    margin: 0;
+  }
+  
+  /* Team Section Styles */
+  .team-section {
+    background-color: #fff;
+    padding: 40px;
+  }
+  
+  .team-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .team-member {
+    flex-basis: 30%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .team-member:hover {
+    background-color: #d3d3d3;
+  }
+  
+  .team-member h3 {
+    margin-top: 0;
+    font-size: 24px;
+  }
+  
+  .team-member p {
+    margin-bottom: 0;
+  }
+  
+  /* Special Thanks Section Styles */
+  .special-thanks-section {
+    background-color: #333;
+    color: #fff;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .special-thanks-section p {
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .special-thanks-section p:hover {
+    background-color: #6495ed;
+    color: #fff;
+  }
+  
+  /* Footer Styles */
+  footer {
+    background-color: #333;
+    color:
+  
