@@ -2,11 +2,15 @@ const form = document.querySelector('#register-form');
 const usernameInput = document.querySelector('#username');
 const nameInput = document.querySelector('#name');
 const emailInput = document.querySelector('#email');
+const ageInput = document.querySelector('#age');
+const addressInput = document.querySelector('#address');
 const passwordInput = document.querySelector('#password');
 const confirmPasswordInput = document.querySelector('#confirm-password');
 const usernameError = document.querySelector('#username-error');
 const nameError = document.querySelector('#name-error');
 const emailError = document.querySelector('#email-error');
+const ageError = document.querySelector('#age-error');
+const addressError = document.querySelector('#address-error');
 const passwordError = document.querySelector('#password-error');
 const confirmPasswordError = document.querySelector('#confirm-password-error');
 
@@ -37,6 +41,20 @@ form.addEventListener('submit', function(event) {
     emailError.textContent = '';
   }
 
+  if (!ageInput.checkValidity()) {
+    ageError.textContent = 'Please enter a valid Age.';
+    return;
+  } else {
+    ageError.textContent = '';
+  }
+
+  if (!addressInput.checkValidity()) {
+    addressError.textContent = 'Please enter a valid Address.';
+    return;
+  } else {
+    addressError.textContent = '';
+  }
+
   if (!passwordInput.checkValidity()) {
     passwordError.textContent = 'Please enter a valid password.';
     return;
@@ -62,6 +80,8 @@ form.addEventListener('submit', function(event) {
     const username = usernameInput.value;
     const name = nameInput.value;
     const email = emailInput.value;
+    const age = ageInput.value;
+    const address = addressInput.value;
     const password =  passwordInput.value;
 
    // Get existing user data from local storage
@@ -78,7 +98,7 @@ form.addEventListener('submit', function(event) {
 
     } else {
       // Add new user to the list
-      users[username] = { password: password, name: name , email: email};
+      users[username] = { password: password, name: name , email: email , age: age, address: address};
 
       // Save updated user list in local storage
       localStorage.setItem("users", JSON.stringify(users));
