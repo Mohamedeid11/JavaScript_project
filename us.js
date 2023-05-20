@@ -1,21 +1,21 @@
 // Team members data
 const teamMembers = [
     {
-      name: 'John Doe',
-      role: 'Developer'
+      name: 'Nader Sayed',
+      role: 'IOT Devloper'
     },
     {
-      name: 'Jane Smith',
-      role: 'Designer'
+      name: 'Mohamed Eid',
+      role: 'IOT Devloper'
     },
     {
-      name: 'Mike Johnson',
-      role: 'Marketing'
+      name: 'Ebrahim Elshemy',
+      role: 'IOT Devloper'
     }
   ];
   
   // Special thanks content
-  const specialThanksContent = 'We would like to express our gratitude to all our supporters and contributors. Thank you!';
+  const specialThanksContent = 'We would like to express our gratitude to all our supporters and contributors from Eng.Mina Nagy & Eng.Menna Hamdy. Thank you!';
   
   // Function to update team members section
   function updateTeamMembers() {
@@ -42,7 +42,7 @@ const teamMembers = [
     specialThanksElement.textContent = specialThanksContent;
   
     specialThanksElement.addEventListener('mouseover', () => {
-      specialThanksElement.style.backgroundColor = 'blue';
+      specialThanksElement.style.backgroundColor = 'green';
       specialThanksElement.style.color = 'white';
     });
   

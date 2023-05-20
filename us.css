@@ -36,7 +36,6 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  
   .team-member {
     flex-basis: 30%;
     background-color: #f2f2f2;
@@ -46,10 +45,17 @@ body {
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
-  .team-member:hover {
-    background-color: #d3d3d3;
+  .team-member img {
+    width: 150px; /* Adjust the width to your preference */
+    height: 150px; /* Adjust the height to your preference */
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
   }
   
   .team-member h3 {
@@ -60,28 +66,4 @@ body {
   .team-member p {
     margin-bottom: 0;
   }
-  
-  /* Special Thanks Section Styles */
-  .special-thanks-section {
-    background-color: #333;
-    color: #fff;
-    padding: 40px;
-    text-align: center;
-  }
-  
-  .special-thanks-section p {
-    margin: 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .special-thanks-section p:hover {
-    background-color: #6495ed;
-    color: #fff;
-  }
-  
-  /* Footer Styles */
-  footer {
-    background-color: #333;
-    color:
   
