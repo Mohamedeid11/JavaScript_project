@@ -19,4 +19,7 @@
     background-color: rgba(0, 0, 0, 0.7);
   }
   
-  .h2 {color: bisque;}
+  .team-heading {
+    color: rgb(247, 150, 22); /* Replace 'blue' with the desired color */
+  }
+  
